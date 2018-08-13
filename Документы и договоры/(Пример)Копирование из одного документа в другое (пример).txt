@@ -1,0 +1,7 @@
+копирование из одного документа в другое
+
+var dogovor = dest.Versions.Single(x=>x.IsActual);
+var anketa = src.Versions.Single(x=>x.IsActual);
+dogovor.String_Surname_Client = anketa.strSurname;
+dogovor.String_FirstName_Client = anketa.strFirstName;
+dogovor.String_SecondName_Client = anketa.strSecondName;

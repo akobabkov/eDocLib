@@ -1,0 +1,14 @@
+//Копирование Корреспондента + рубрики из карточки "Входящего" в карточку "Исходящего" с указанием "Адресата"
+
+var doc = dest.Versions.Single(x => x.IsActual);
+if (doc.IsAdded()) 
+        doc.UolBase0_Id = actual.UolBase1_Id;
+
+foreach (var HV in actual.Rubrics)
+{
+  if (!HV.IsRubric_IdNull)
+  {
+    var Rub = doc.AddRubricsRow();
+    Rub.Rubric_Id = HV.Rubric_Id;
+  }
+}

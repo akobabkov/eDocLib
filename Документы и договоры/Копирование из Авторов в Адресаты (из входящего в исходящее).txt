@@ -1,0 +1,9 @@
+var doc = dest.Versions.Single(x => x.IsActual);
+foreach (var HV in actual.Authors)
+{
+  if (!HV.IsAuthor_IdNull)
+  {
+    var Adr = doc.AddAddresseesRow(); //Addressees - адресаты
+    Adr.Addressee_Id = HV.Author_Id;
+  }
+}

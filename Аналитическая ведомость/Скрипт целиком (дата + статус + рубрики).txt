@@ -1,0 +1,15 @@
+// опирование даты, статуса и рубрик из "√лавной книги" в "аналитическую ведомость" при  св€зывании.
+
+var doc = dest.Versions.Single(x => x.IsActual);
+if (doc.IsAdded()) 
+        doc.Date = actual.Date;
+        doc.HS6Z74GBNQE6NEZKYMLZ5BW0_Id = actual.HS6Z74GBNQE6NEZKYMLZ5BW0_Id;
+
+foreach (var HV in actual.Rubrics)
+{
+  if (!HV.IsRubric_IdNull)
+  {
+    var Rub = doc.AddRubricsRow();
+    Rub.Rubric_Id = HV.Rubric_Id;
+  }
+}
