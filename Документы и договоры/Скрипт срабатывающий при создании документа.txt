@@ -1,0 +1,36 @@
+/*Всё ниженаписанное это примеры скрипта который срабатывает 
+при создании документа. По умолчанию скрипт должен ставить
+Рубрику документа как и группа документа*/
+
+var doc = dest.Versions.Single(x => x.IsActual);
+var Rub = doc.AddRubricsRow();
+if (doc.IsAdded()) 
+      Rub.Rubric_Id = "Исходящий документ";
+
+      
+
+var doc = dest.Versions.Single(x => x.IsActual);
+var Rub = doc.AddRubricsRow();
+if (doc.IsAdded())
+	  Rub.Rubric_Id = RubricatedCatalog.Rubrics.Rubric_Id("Исходящий документ"); 
+
+
+var doc = dest.Versions.Single(x => x.IsActual);
+var Rub = doc.AddRubricsRow();
+Guid Rubr = (Исходящий документ);
+if (doc.IsAdded())
+	  Rub.Rubric_Id = Rubr;
+
+docVersion.ANNOTATION = txt;
+
+
+DocGroup_Id
+
+var doc = dest.Versions.Single(x => x.IsActual);
+if (doc.IsAdded()) 
+      doc.Rubric_Id = actual.DocGroup_Id;
+
+var doc = dest.Versions.Single(x => x.IsActual);
+var Rub = doc.AddRubricsRow();
+if (doc.IsAdded()) 
+         Rub.Rubric_Id = doc.DocGroup_Id;      
