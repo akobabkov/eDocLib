@@ -1,4 +1,4 @@
-Документ, BaseDocument
+﻿!Документ, BaseDocument
   Группа документов, DocGroup_Id
     Название группы документов, DocGroupName, Строка до 255 символов
   Версии документа, Versions
