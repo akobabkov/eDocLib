@@ -1,3 +1,5 @@
 ﻿ doc = dest.Versions.Single(x => x.IsActual);
-if (doc.IsAdded()) 
-      doc.UolBase2_Id = actual.UolBase2_Id;
+if (doc.IsAdded())
+{
+	doc.UolBase2_Id = actual.UolBase2_Id;
+}     

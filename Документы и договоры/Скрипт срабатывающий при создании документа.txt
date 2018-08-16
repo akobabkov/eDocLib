@@ -11,6 +11,10 @@ if (doc.IsAdded())
 doc.ANNOTATION = txt; //Поле аннотации
 
 var doc = dest.Versions.Single(x=>x.IsActual);
-var Rub = doc.AddRubricsRow();
+var Rub = doc.AddRubricsRow(); //добавляет новую строку
 Rub.Rubric_Id = Catalogs.GetFolderIdByName("Исходящее письмо");
 //Что-то рабочее
+
+var doc = dest.Versions.Single(x=>x.IsActual);
+var Rub = doc.AddRubricsRow();
+Rub.Rubric_Id = doc.RubricName("Исходящее письмо");
