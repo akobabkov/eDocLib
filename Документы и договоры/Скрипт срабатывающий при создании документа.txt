@@ -8,29 +8,9 @@ if (doc.IsAdded())
       Rub.Rubric_Id = "Исходящий документ";
 
       
+doc.ANNOTATION = txt; //Поле аннотации
 
-var doc = dest.Versions.Single(x => x.IsActual);
+var doc = dest.Versions.Single(x=>x.IsActual);
 var Rub = doc.AddRubricsRow();
-if (doc.IsAdded())
-	  Rub.Rubric_Id = RubricatedCatalog.Rubrics.Rubric_Id("Исходящий документ"); 
-
-
-var doc = dest.Versions.Single(x => x.IsActual);
-var Rub = doc.AddRubricsRow();
-Guid Rubr = (Исходящий документ);
-if (doc.IsAdded())
-	  Rub.Rubric_Id = Rubr;
-
-docVersion.ANNOTATION = txt;
-
-
-DocGroup_Id
-
-var doc = dest.Versions.Single(x => x.IsActual);
-if (doc.IsAdded()) 
-      doc.Rubric_Id = actual.DocGroup_Id;
-
-var doc = dest.Versions.Single(x => x.IsActual);
-var Rub = doc.AddRubricsRow();
-if (doc.IsAdded()) 
-         Rub.Rubric_Id = doc.DocGroup_Id;      
+Rub.Rubric_Id = Catalogs.GetFolderIdByName("Исходящее письмо");
+//Что-то рабочее
