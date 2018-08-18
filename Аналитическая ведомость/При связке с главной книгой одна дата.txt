@@ -1,3 +1,5 @@
 var doc = dest.Versions.Single(x => x.IsActual);
-if (doc.IsAdded()) 
-      doc.Date = actual.Date;
+if (doc.IsAdded())
+{
+	doc.Date = actual.Date;
+}
