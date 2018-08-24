@@ -3,3 +3,5 @@ if (doc.IsAdded())
 {
 	doc.HS6Z74GBNQE6NEZKYMLZ5BW0_Id = actual.HS6Z74GBNQE6NEZKYMLZ5BW0_Id;
 }
+
+// у статуса реквизит API оказался именно таким, можно поменять

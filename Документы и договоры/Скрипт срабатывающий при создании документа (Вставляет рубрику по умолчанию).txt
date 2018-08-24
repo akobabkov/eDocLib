@@ -1,0 +1,10 @@
+/*Скрипт, при создании документа, ставит автоматически нужную рубрику*/
+
+var doc = dest.Versions.Single(x=>x.IsActual);
+var Rub = doc.AddRubricsRow();
+var RubricGuid =  Guid.Parse("нужный вам GUID рубрики");
+Rub.Rubric_Id = RubricGuid;
+
+/*Но есть одно НО - это велосипед, по идее можно как-то получить данный GUID из справочника
+рубрики и присвоить данное значение Rub.Rubric_Id*/
+
