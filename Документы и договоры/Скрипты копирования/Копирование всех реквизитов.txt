@@ -1,0 +1,119 @@
+//Работает только на проекте документа
+
+
+var doc = dest.Versions.Single(x => x.IsActual);
+
+//Копируем анотацию (ANNOTATION)
+if(!actual.IsANNOTATIONNull)
+doc.ANNOTATION = actual.ANNOTATION;
+
+//Копируем вид документа
+if(!actual.IsDocKind0_IdNull)
+doc.Row.SetField("DocKind0_Id", actual.Row.Field<Guid?>("DocKind0_Id"));
+
+//Копируем гриф документа
+if(!actual.IsSecrecy0_IdNull)
+doc.Row.SetField("Secrecy0_Id", actual.Row.Field<Guid?>("Secrecy0_Id"));
+
+//Копируем Примечание
+if(!actual.IsCONTENTNull)
+doc.CONTENT= actual.CONTENT;
+
+//Копируем листы
+if(!actual.IsInt32_0Null)
+doc.Int32_0= actual.Int32_0;
+
+if(!actual. IsString_0Null)
+doc. String_0 = actual. String_0;
+
+if(!actual. IsInt32_1Null)
+doc. Int32_1 = actual. Int32_1;
+
+foreach (var HV in actual.Authors)
+{
+if (!HV.IsAuthor_IdNull)
+{
+  var Adr = doc.AddExecutorsRow();
+  Adr.Executor_Id = HV.Author_Id;
+}
+}
+
+foreach(var adr in actual.Addressees)
+{if(!adr.IsAddressee_IdNull)
+{
+var nadr = doc.AddAddresseesRow();
+nadr.Addressee_Id = adr.Addressee_Id;
+}
+}
+
+foreach (var HV in actual.Rubrics)
+{
+if (!HV.IsRubric_IdNull)
+{
+  var rbr = doc.AddRubricsRow();
+  rbr.Rubric_Id = HV.Rubric_Id;
+}
+}
+
+foreach (var HV in actual.Links)
+{
+if (!HV.IsDoc_IdNull)
+{
+  var lnk = doc.AddLinksRow();
+  lnk.Doc_Id = HV.Doc_Id;
+  lnk.LinkType_Id = HV.LinkType_Id;
+  lnk.LinkName = HV.LinkName;
+  lnk.DocNumber = HV.DocNumber;
+  lnk.DocDate = HV.DocDate;
+  lnk.DocGroup_Name = HV.DocGroup_Name;
+
+  lnk.DOC_ANNOTATION = HV.DOC_ANNOTATION;
+}
+}
+
+foreach (var file in actual.Files)
+{
+if (!file.IsFile_IdNull)
+{
+  var lnk = doc.AddFilesRow();
+  lnk.File_Id = file.File_Id;
+  lnk.FileName = file.FileName;
+  lnk.FileSize = file.FileSize;
+  lnk.FileDescription = file.FileDescription;
+
+  var sign = src.Signs.FirstOrDefault(x => x.RecordId == file._Id);
+  if (sign != null)
+  {
+      var newSign = dest.AddSignsRow();
+      newSign.SignDate = sign.SignDate;
+      newSign.SignOwner = sign.SignOwner;
+      newSign.Signer_Id = sign.Signer_Id;
+      newSign.SignerDisplayName = sign.SignerDisplayName;
+      newSign.RecordId = lnk._Id;
+      newSign.Sign_Id = sign.Sign_Id;
+  }
+}
+}
+
+
+var signTaskGroupId = Catalogs.GetDocGroupIdByName("На подпись");
+var viseTaskGroupId = Catalogs.GetDocGroupIdByName("На визирование");
+
+var signTasks = actual.Tasks.Where( x => x.TaskGroupId == signTaskGroupId);
+var viseTasks = actual.Tasks.Where( x => x.TaskGroupId == viseTaskGroupId);
+
+
+foreach (var task in signTasks)
+   foreach (var report in task.Reports)
+      if (report.DocumentStatus_EndFlag)
+         doc.AddAuthorsRow().Author_Id = report.Perfomer_Id;
+
+foreach (var task in viseTasks)
+   foreach (var report in task.Reports)
+      if (report.DocumentStatus_EndFlag)
+      {
+         var vise = doc.AddViseRow();
+         vise.ViseAuthor_Id = report.Perfomer_Id;
+         vise.ViseDate = report.SaveDate;
+         vise.ViseText = report.DocumentStatus_Name;
+      }
