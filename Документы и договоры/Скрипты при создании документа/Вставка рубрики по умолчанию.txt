@@ -3,8 +3,8 @@ Version 0.1*/
 
 var doc = dest.Versions.Single(x=>x.IsActual);
 var Rub = doc.AddRubricsRow(); //Резервирует колонку в табличке
-var RubricGuid =  Guid.Parse("нужный вам GUID рубрики");//ищет реквизит по нужному ID в справочниках
-Rub.Rubric_Id = RubricGuid; //Вставляет 
+var RubricGuid = Guid.Parse("Ваш GUID");//ищет реквизит по нужному ID в справочниках
+Rub.Rubric_Id = RubricGuid;
 
 /*Но есть одно НО - это велосипед, по идее можно как-то получить данный GUID из справочника
 Рубрики по имени Рубрики и присвоить данное значение Rub.Rubric_Id*/
