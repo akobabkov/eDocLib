@@ -1,0 +1,16 @@
+﻿//Копирование даты, статуса и рубрик из "Главной книги" в "аналитическую ведомость" при  связывании.
+
+var doc = dest.Versions.Single(x => x.IsActual);
+if (doc.IsAdded())
+{
+    doc.Date = actual.Date;
+    doc.HS6Z74GBNQE6NEZKYMLZ5BW0_Id = actual.HS6Z74GBNQE6NEZKYMLZ5BW0_Id; // у статуса реквизит API оказался именно таким, можно поменять
+}
+foreach (var HV in actual.Rubrics)
+{
+  if (!HV.IsRubric_IdNull)
+  {
+    var Rub = doc.AddRubricsRow();
+    Rub.Rubric_Id = HV.Rubric_Id;
+  }
+}

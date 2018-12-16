@@ -1,25 +1,25 @@
-//Работает только на проекте документа
+//Р Р°Р±РѕС‚Р°РµС‚ С‚РѕР»СЊРєРѕ РЅР° РїСЂРѕРµРєС‚Рµ РґРѕРєСѓРјРµРЅС‚Р°
 
 
 var doc = dest.Versions.Single(x => x.IsActual);
 
-//Копируем анотацию (ANNOTATION)
+//РљРѕРїРёСЂСѓРµРј Р°РЅРѕС‚Р°С†РёСЋ (ANNOTATION)
 if(!actual.IsANNOTATIONNull)
 doc.ANNOTATION = actual.ANNOTATION;
 
-//Копируем вид документа
+//РљРѕРїРёСЂСѓРµРј РІРёРґ РґРѕРєСѓРјРµРЅС‚Р°
 if(!actual.IsDocKind0_IdNull)
 doc.Row.SetField("DocKind0_Id", actual.Row.Field<Guid?>("DocKind0_Id"));
 
-//Копируем гриф документа
+//РљРѕРїРёСЂСѓРµРј РіСЂРёС„ РґРѕРєСѓРјРµРЅС‚Р°
 if(!actual.IsSecrecy0_IdNull)
 doc.Row.SetField("Secrecy0_Id", actual.Row.Field<Guid?>("Secrecy0_Id"));
 
-//Копируем Примечание
+//РљРѕРїРёСЂСѓРµРј РџСЂРёРјРµС‡Р°РЅРёРµ
 if(!actual.IsCONTENTNull)
 doc.CONTENT= actual.CONTENT;
 
-//Копируем листы
+//РљРѕРїРёСЂСѓРµРј Р»РёСЃС‚С‹
 if(!actual.IsInt32_0Null)
 doc.Int32_0= actual.Int32_0;
 
@@ -96,8 +96,8 @@ if (!file.IsFile_IdNull)
 }
 
 
-var signTaskGroupId = Catalogs.GetDocGroupIdByName("На подпись");
-var viseTaskGroupId = Catalogs.GetDocGroupIdByName("На визирование");
+var signTaskGroupId = Catalogs.GetDocGroupIdByName("РќР° РїРѕРґРїРёСЃСЊ");
+var viseTaskGroupId = Catalogs.GetDocGroupIdByName("РќР° РІРёР·РёСЂРѕРІР°РЅРёРµ");
 
 var signTasks = actual.Tasks.Where( x => x.TaskGroupId == signTaskGroupId);
 var viseTasks = actual.Tasks.Where( x => x.TaskGroupId == viseTaskGroupId);
