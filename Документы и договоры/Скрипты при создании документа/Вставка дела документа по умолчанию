@@ -1,0 +1,2 @@
+var doc = dest.Versions.Single(x=>x.IsActual);
+doc.Case_Id = Guid.Parse("нужный вам GUID элемента справочника");
