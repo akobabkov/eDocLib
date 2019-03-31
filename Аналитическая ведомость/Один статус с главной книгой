@@ -1,7 +1,5 @@
 var doc = dest.Versions.Single(x => x.IsActual);
 if (doc.IsAdded())
 {
-	doc.HS6Z74GBNQE6NEZKYMLZ5BW0_Id = actual.HS6Z74GBNQE6NEZKYMLZ5BW0_Id;
+	doc.StatusAnVed_Id = actual.StatusAnVed_Id;
 }
-
-// у статуса реквизит API оказался именно таким, можно поменять
